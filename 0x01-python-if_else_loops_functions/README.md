@@ -86,3 +86,45 @@ Write a program that prints all possible different combinations of two digits.
 	• You can only use no more than 2 loops in your code
 	• You are not allowed to store numbers or strings in a variable
 	• You are not allowed to import any module
+
+[7. islower](7-islower.py)
+
+Write a function that checks for lowercase character.
+
+	• Prototype: def islower(c):
+	• Returns True if c is lowercase
+	• Returns False otherwise
+	• You are not allowed to import any module
+	• You are not allowed to use str.upper() and str.isupper()
+	• Tips: ord()
+You don’t need to understand __import__
+
+[8. To uppercase](8-uppercase.py)
+
+Write a function that prints a string in uppercase followed by a new line.
+
+	• Prototype: def uppercase(str):
+	• You can only use no more than 2 print functions with string format
+	• You can only use one loop in your code
+	• You are not allowed to import any module
+	• You are not allowed to use str.upper() and str.isupper()
+	• Tips: ord()
+You don’t need to understand __import__
+
+[9. There are only 3 colors, 10 digits, and 7 notes; it's what we do with them that's important](9-print_last_digit.py)
+
+Write a function that prints the last digit of a number.
+
+	• Prototype: def print_last_digit(number):
+	• Returns the value of the last digit
+	• You are not allowed to import any module
+You don’t need to understand __import__
+
+[10. a + b](10-add.py)
+
+Write a function that adds two integers and returns the result.
+
+	• Prototype: def add(a, b):
+	• Returns the value of a + b
+	• You are not allowed to import any module
+You don’t need to understand __import__
