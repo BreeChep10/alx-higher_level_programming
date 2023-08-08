@@ -10,5 +10,5 @@ def uppercase(str):
             uppercase_str += "{}".format(uppercase_char)
         else:
             uppercase_str += "{}".format(i)
-    
+
     print(uppercase_str)
