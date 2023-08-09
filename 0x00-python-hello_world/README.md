@@ -1,5 +1,6 @@
 # Basics of Python
 
+## TASKS:
 
 [0. Run Python file](0-run)
 
