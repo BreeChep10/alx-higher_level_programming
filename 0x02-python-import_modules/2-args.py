@@ -16,4 +16,3 @@ if __name__ == "__main__":
         pos = i + 1
         arg = args[i]
         print("{}: {}".format(pos, arg))
-
