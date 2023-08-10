@@ -7,7 +7,7 @@ if __name__ == "__main__":
     no_args = len(argv) - 1
     args = argv[1:]
 
-    print("{} arguement{}{}".format(
+    print("{} argument{}{}".format(
         no_args,
         's' if no_args != 1 else '',
         ':' if no_args > 0 else '.'))
