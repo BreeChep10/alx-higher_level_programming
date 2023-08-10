@@ -12,6 +12,6 @@ if __name__ == "__main__":
     division = div(a, b)
 
     print("{} + {} = {}".format(a, b, addition))
-    print("{} + {} = {}".format(a, b, subtraction))
-    print("{} + {} = {}".format(a, b, product))
-    print("{} + {} = {}".format(a, b, division))
+    print("{} - {} = {}".format(a, b, subtraction))
+    print("{} * {} = {}".format(a, b, product))
+    print("{} / {} = {}".format(a, b, division))
