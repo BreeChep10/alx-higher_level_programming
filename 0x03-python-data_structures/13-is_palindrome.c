@@ -75,8 +75,5 @@ int is_palindrome(listint_t **head)
 		p2 = p2->next;
 	}
 	p2 = reverse_list(&p2);
-	p1 = find_middle(*head);
-	p1->next = p2;
-
 	return (palindrome);
 }
