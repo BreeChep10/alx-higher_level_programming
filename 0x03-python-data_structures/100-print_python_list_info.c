@@ -1,5 +1,11 @@
 #include <Python.h>
 
+/**
+ * print_python_list_info - C function that prints basic info about
+ * python llst.
+ * @p: Pointer to the pyobject list
+ */
+
 void print_python_list_info(PyObject *p)
 {
 	PyListObject *list = (PyListObject *)p;
