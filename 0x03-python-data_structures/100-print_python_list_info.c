@@ -1,6 +1,6 @@
 #include <Python.h>
 
-void print_python_list_infor(PyObject *p)
+void print_python_list_info(PyObject *p)
 {
 	PyListObject *list = (PyListObject *)p;
 
