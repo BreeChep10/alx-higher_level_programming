@@ -4,49 +4,63 @@ void print_python_list(PyObject *p);
 void print_python_bytes(PyObject *p);
 
 /**
- * print_python_list - Print basic information about Python lists
- * @p: Pointer to the Python list object
+ * print_python_list - Prints basic info about Python lists.
+ * @p: A PyObject list object.
  */
 void print_python_list(PyObject *p)
 {
+	int size, alloc, i;
 	PyListObject *list = (PyListObject *)p;
-	Py_ssize_t size = PyList_Size(p);
-	Py_ssize_t i;
+		    
+	size = ((PyVarObject *)p)->ob_size;
+	alloc = list->allocated;
 
 	printf("[*] Python list info\n");
-	printf("[*] Size of the Python List = %ld\n", size);
-	printf("[*] Allocated = %ld\n", list->allocated);
+	printf("[*] Size of the Python List = %d\n", size);
+	printf("[*] Allocated = %d\n", alloc);
 
 	for (i = 0; i < size; i++)
 	{
-		PyObject *item = PyList_GetItem(p, i);
-		printf("Element %ld: %s\n", i, Py_TYPE(item)->tp_name);
+		PyObject *item = list->ob_item[i];
+		const char *type = Py_TYPE(item)->tp_name;
+		
+		printf("Element %d: %s\n", i, type);
+		if (strcmp(type, "bytes") == 0)
+			print_python_bytes(item);
 	}
 }
 
 /**
- * print_python_bytes - Print basic info about Python bytes objects
- * @p: Pointer to the Python bytes object
+ * print_python_bytes - Prints basic info about Python byte objects.
+ * @p: A PyObject byte object.
  */
 void print_python_bytes(PyObject *p)
 {
-	PyBytesObject *bytes = (PyBytesObject *)p;
-	Py_ssize_t size = PyBytes_GET_SIZE(p);
-	Py_ssize_t i;
+	int i, size;
+	unsigned char *bytes = (unsigned char *)PyBytes_AsString(p);
 
 	printf("[.] bytes object info\n");
-	printf("  size: %ld\n", size);
-	printf("  trying string: %s\n", bytes->ob_sval);
 
-	if (size > 10)
-	size = 10;
+	if (!bytes)
+	{
+		printf("  [ERROR] Invalid Bytes Object\n");
+		return;
+	}
 
-	printf("  first %ld bytes: ", size);
+	size = ((PyVarObject *)p)->ob_size;
+	printf("  size: %d\n", size);
+	printf("  trying string: %s\n", bytes);
+
+	size = size > 10 ? 10 : size;
+	printf("  first %d bytes: ", size);
+
 	for (i = 0; i < size; i++)
 	{
-		printf("%02x", bytes->ob_sval[i] & 0xFF);
-		if (i < size - 1)
+		printf("%02x", bytes[i]);
+		if (i == (size - 1))
+			printf("\n");
+		else
 			printf(" ");
 	}
-	printf("\n");
 }
+
