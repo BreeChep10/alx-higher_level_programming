@@ -1,5 +1,8 @@
 #include <Python.h>
 
+void print_python_list(PyObject *p);
+void print_python_bytes(PyObject *p);
+
 /**
  * print_python_list - Print basic information about Python lists
  * @p: Pointer to the Python list object
