@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 """creating a class"""
 
 
@@ -123,7 +124,7 @@ class Rectangle:
 
     def __repr__(self):
         """
-        Return a string representation that can be used with eval() to recreate the object.
+        Return a string representation that can be used to recreate the object.
 
         Returns:
             str: A string representation of the rectangle.
@@ -132,7 +133,7 @@ class Rectangle:
 
     def __del__(self):
         """
-        Print a message when an instance of Rectangle is deleted and decrement number_of_instances.
+        Print a message when an instance deleted and decrement no_of_instances.
 
         Returns:
             None
