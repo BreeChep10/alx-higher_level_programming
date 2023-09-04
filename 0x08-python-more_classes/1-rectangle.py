@@ -1,3 +1,10 @@
+#!/usr/bin/python3
+
+
+"""creating a class"""
+
+
+
 class Rectangle:
     """
     Rectangle class to represent a rectangle.
