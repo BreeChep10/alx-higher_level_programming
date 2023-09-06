@@ -5,8 +5,8 @@ a module to print a square
 
 """
 
-def print_square(size):
 
+def print_square(size):
 
     """
     a function to print a square give imput as the dimension
