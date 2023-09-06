@@ -3,7 +3,10 @@
 """
 a module to divide a matrix
 
+
 """
+
+
 def matrix_divided(matrix, div):
     """
     Divides a matrix(list of list) by the given input divisor
@@ -41,5 +44,5 @@ def matrix_divided(matrix, div):
             raise TypeError("Each row of the matrix must have the same size")
         length = len(j)
 
-    doll = list(map(lambda a : list(map(lambda b : round(b / div, 2), a)), matrix))
-    return (doll)
+    z = list(map(lambda a: list(map(lambda b: round(b / div, 2), a)), matrix))
+    return (z)
