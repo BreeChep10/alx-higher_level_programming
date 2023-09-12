@@ -23,3 +23,4 @@ def class_to_json(obj):
     """
     returning the json dictionary
     """
+    return json_dict
