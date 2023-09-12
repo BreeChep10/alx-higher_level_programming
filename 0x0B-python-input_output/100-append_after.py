@@ -25,7 +25,7 @@ def append_after(filename="", search_string="", new_string=""):
                     modified_lines.append(new_string + '\n')
                 else:
                     modified_lines.append(new_string)
-                
+
         """
         rewind the file to the beginning
         """
