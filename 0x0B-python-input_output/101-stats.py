@@ -20,18 +20,23 @@ line_count = 0
 """
 Define a signal handler for CTRL + C
 """
+
+
 def handle_interrupt(signal, frame):
     print_metrics()
+
 
 """
 Register the signal handler for CTRL + C
 """
 signal.signal(signal.SIGINT, handle_interrupt)
 
+
 def print_metrics():
     print("Total file size:", total_size)
     for code in sorted(status_code_counts.keys()):
         print(f"{code}: {status_code_counts[code]}")
+
 
 try:
     for line in sys.stdin:
