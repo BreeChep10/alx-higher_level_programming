@@ -1,41 +1,76 @@
 #!/usr/bin/python3
+
+
 """
-reads stdin line by line and computes metrics
+Initialize dictionaries to store file sizes and status code counts
 """
 import sys
+import signal
 
 
-file_size = 0
-status_tally = {"200": 0, "301": 0, "400": 0, "401": 0,
-                "403": 0, "404": 0, "405": 0, "500": 0}
-i = 0
+file_sizes = {}
+status_code_counts = {}
+
+"""
+Initialize variables to keep track of total file size and line count
+"""
+total_size = 0
+line_count = 0
+
+"""
+Define a signal handler for CTRL + C
+"""
+def handle_interrupt(signal, frame):
+    print_metrics()
+
+"""
+Register the signal handler for CTRL + C
+"""
+signal.signal(signal.SIGINT, handle_interrupt)
+
+def print_metrics():
+    print("Total file size:", total_size)
+    for code in sorted(status_code_counts.keys()):
+        print(f"{code}: {status_code_counts[code]}")
+
 try:
     for line in sys.stdin:
-        tokens = line.split()
-        if len(tokens) >= 2:
-            a = i
-            if tokens[-2] in status_tally:
-                status_tally[tokens[-2]] += 1
-                i += 1
-            try:
-                file_size += int(tokens[-1])
-                if a == i:
-                    i += 1
-            except FileNotFoundError:
-                if a == i:
-                    continue
-        if i % 10 == 0:
-            print("File size: {:d}".format(file_size))
-            for key, value in sorted(status_tally.items()):
-                if value:
-                    print("{:s}: {:d}".format(key, value))
-    print("File size: {:d}".format(file_size))
-    for key, value in sorted(status_tally.items()):
-        if value:
-            print("{:s}: {:d}".format(key, value))
+        line_count += 1
+        parts = line.split()
+
+        """
+        Check if the line has the expected format
+        """
+        if len(parts) >= 9:
+            status_code = parts[-2]
+            size = int(parts[-1])
+
+            """
+            Update total file size
+            """
+            total_size += size
+
+            """
+            Update file size dictionary
+            """
+            file_sizes[line_count] = total_size
+
+            """
+            Update status code counts dictionary
+            """
+            if status_code in status_code_counts:
+                status_code_counts[status_code] += 1
+            else:
+                status_code_counts[status_code] = 1
+
+            """
+            Print statistics every 10 lines
+            """
+            if line_count % 10 == 0:
+                print_metrics()
 
 except KeyboardInterrupt:
-    print("File size: {:d}".format(file_size))
-    for key, value in sorted(status_tally.items()):
-        if value:
-            print("{:s}: {:d}".format(key, value))
+    """
+    Handle KeyboardInterrupt (CTRL + C)
+    """
+    print_metrics()
